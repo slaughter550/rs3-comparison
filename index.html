@@ -156,9 +156,9 @@
 
                     string = "";
                     data['activities'].forEach(function(element){
-                        string += "<div class='activity'>"+element['text']+'</div>'
+                        string += "<tr><td>"+element['date']+"</td><td>"+element['text']+"</td></tr>"
                     });
-                    $("#activities #"+id).html(string);
+                    $("#activities #"+id).html("<table class='activity'>" + string + "</table>");
                 }
             });
         };
