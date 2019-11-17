@@ -158,7 +158,9 @@
 
                     string = "";
                     data['activities'].forEach(function(element){
-                        string += "<tr><td width='150'>"+element['date']+"</td><td>"+element['text']+"</td></tr>"
+                        var date = (new Date(Date.parse(element['date'] + ' UTC')));
+                        let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+                        string += "<tr><td width='150'>"+formatted_date+"</td><td>"+element['text']+"</td></tr>"
                     });
                     $("#activities #"+id).html("<table class='activity'>" + string + "</table>");
                 }
