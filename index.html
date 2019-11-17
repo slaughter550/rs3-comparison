@@ -35,7 +35,7 @@
             padding: 10px;
         }
 
-        #activities .activity {
+        #activities .activity, #activities .activity td {
             font-size: 20px;
             border-collapse: collapse;
             border: 0px solid black !important;
@@ -158,7 +158,7 @@
 
                     string = "";
                     data['activities'].forEach(function(element){
-                        string += "<tr><td width='120'>"+element['date']+"</td><td>"+element['text']+"</td></tr>"
+                        string += "<tr><td width='150'>"+element['date']+"</td><td>"+element['text']+"</td></tr>"
                     });
                     $("#activities #"+id).html("<table class='activity'>" + string + "</table>");
                 }
