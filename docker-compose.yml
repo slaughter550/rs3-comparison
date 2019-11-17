@@ -7,7 +7,7 @@ services:
             - 80:80
             - 443:443
         volumes:
-                - .:/usr/share/nginx/html
+                - .:/home/slaughter/rs3-comparison
                 - ./config/default.conf:/etc/nginx/conf.d/default.conf
                 - ./config/runescape_upstream.conf:/etc/nginx/runescape_upstream
                 - ./config/nginx.conf:/etc/nginx/nginx.conf
