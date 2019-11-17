@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>RS3 Comparison</title>
+    <script src="/scripts/jquery-3.4.1.min.js.css"></script>
+    <style>
+        body {
+            color: #5BABD1;
+            background-color: #242424;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        #container {
+            font-size: 34px;
+            width: 800px;
+            margin: 50px auto;
+        }
+
+        #stats {
+            margin: 0px auto;
+            width: 700px;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        #stats, #stats th, #stats td {
+            border: 1px solid #5BABD1;
+            border-collapse: collapse;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #stats th, #stats td {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <table id="stats">
+            <tr id="screenname">
+                <th></th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="combatlevel">
+                <th>Combat Level</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="attack">
+                <th>Attack</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="strength">
+                <th>Strength</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="defense">
+                <th>Defense</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="constitution">
+                <th>Constitution</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="range">
+                <th>Range</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="prayer">
+                <th>Prayer</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="summoning">
+                <th>Summoning</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="magic">
+                <th>Magic</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="mining">
+                <th>Mining</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+            <tr id="smithing">
+                <th>Smithing</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var p1 = 'slaughter550';
+        var p2 = 'marknauf';
+
+        var update = () => {
+            getData(p1, 'p1');
+            getData(p2, 'p2');
+
+            $("#screenname #p1").text(p1);
+            $("#screenname #p2").text(p2);
+        }
+
+        var getData = (player, id) => {
+            $.ajax({
+                url:"/profile/" + player,
+                dataType: "json",
+                success: function(data) {
+                    $("#combatlevel #"+id).text(data['combatlevel']);
+                    data['skillvalues'].forEach(function(element){
+                        if(element['id'] === 1) {
+                            $("#defense #"+id).text(element['level']);
+                        } else if(element['id'] === 3) {
+                            $("#constitution #"+id).text(element['level']);
+                        } else if(element['id'] === 0) {
+                            $("#attack #"+id).text(element['level']);
+                        } else if(element['id'] === 2) {
+                            $("#strength #"+id).text(element['level']);
+                        } else if(element['id'] === 6) {
+                            $("#magic #"+id).text(element['level']);
+                        } else if(element['id'] === 14) {
+                            $("#mining #"+id).text(element['level']);
+                        } else if(element['id'] === 13) {
+                            $("#smithing #"+id).text(element['level']);
+                        } else if(element['id'] === 4) {
+                            $("#range #"+id).text(element['level']);
+                        } else if(element['id'] === 5) {
+                            $("#prayer #"+id).text(element['level']);
+                        } else if(element['id'] === 23) {
+                            $("#summoning #"+id).text(element['level']);
+                        }
+                    });
+                }
+            });
+        };
+
+        update();
+        setInterval(update, 5000)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx:stable
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+                - .:/usr/share/nginx/html
+                - ./config/default.conf:/etc/nginx/conf.d/default.conf
+                - ./config/runescape_upstream.conf:/etc/nginx/runescape_upstream
+                - ./config/nginx.conf:/etc/nginx/nginx.conf
