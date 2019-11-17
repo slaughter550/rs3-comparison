@@ -38,6 +38,7 @@
         #activities .activity {
             font-size: 20px;
             border-collapse: collapse;
+            border: none;
         }
     </style>
 </head>
@@ -157,7 +158,7 @@
 
                     string = "";
                     data['activities'].forEach(function(element){
-                        string += "<tr><td>"+element['date']+"</td><td>"+element['text']+"</td></tr>"
+                        string += "<tr><td width='50'>"+element['date']+"</td><td>"+element['text']+"</td></tr>"
                     });
                     $("#activities #"+id).html("<table class='activity'>" + string + "</table>");
                 }
