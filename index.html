@@ -118,6 +118,13 @@
         var p1 = 'slaughter550';
         var p2 = 'marknauf';
 
+        function appendLeadingZeroes(n){
+            if(n <= 9){
+                return "0" + n;
+            }
+            return n
+        }
+
         var update = () => {
             getData(p1, 'p1');
             getData(p2, 'p2');
@@ -159,7 +166,7 @@
                     string = "";
                     data['activities'].forEach(function(element){
                         var date = (new Date(Date.parse(element['date'] + ' UTC')));
-                        let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+                        let formatted_date = date.getFullYear() + "-" + appendLeadingZeroes(date.getMonth() + 1) + "-" + appendLeadingZeroes(date.getDate()) + " " + appendLeadingZeroes(date.getHours()) + ":" + appendLeadingZeroes(date.getMinutes()) + ":" + appendLeadingZeroes(date.getSeconds());
                         string += "<tr><td width='150'>"+formatted_date+"</td><td>"+element['text']+"</td></tr>"
                     });
                     $("#activities #"+id).html("<table class='activity'>" + string + "</table>");
