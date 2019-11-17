@@ -100,6 +100,11 @@
                 <td id="p1"></td>
                 <td id="p2"></td>
             </tr>
+            <tr id="activities">
+                <th>Recent Activity</th>
+                <td id="p1"></td>
+                <td id="p2"></td>
+            </tr>
         </table>
     </div>
 
@@ -144,6 +149,12 @@
                             $("#summoning #"+id).text(element['level']);
                         }
                     });
+
+                    string = "";
+                    data['activities'].forEach(function(element){
+                        string += "<div class='activity'>"+element['text']+'</div>'
+                    });
+                    $("#activities #"+id).html(string);
                 }
             });
         };
