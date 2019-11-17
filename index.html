@@ -169,6 +169,7 @@
 
                         amPm = date.getHours() >= 12 ? 'PM' : 'AM';
                         modHours = date.getHours() - (amPm === 'PM' ? 12 : 0);
+                        modHours = (date.getHours() == 0) ? 12 : modHours;
 
                         let formatted_date = date.getFullYear() + "-" + appendLeadingZeroes(date.getMonth() + 1) + "-" + appendLeadingZeroes(date.getDate()) + " " + appendLeadingZeroes(modHours) + ":" + appendLeadingZeroes(date.getMinutes()) + " " + amPm;
                         string += "<tr><td width='150'>"+formatted_date+"</td><td>"+element['text']+"</td></tr>"
